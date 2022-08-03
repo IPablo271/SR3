@@ -6,6 +6,8 @@ class Obj(object):
         self.faces = []
 
         for line in self.lines:
+            if not line:
+                continue
             prefix, value = line.split(' ', 1)
 
             if prefix == 'v':
