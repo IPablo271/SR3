@@ -8,20 +8,30 @@ class Obj(object):
         for line in self.lines:
             if not line:
                 continue
-            prefix, value = line.split(' ', 1)
 
-            if prefix == 'v':
-                self.vertices.append(
-                    list(
-                        map(float, value.split(' '))
-                    )
-                )
-            if prefix == 'f':
-                self.faces.append([
-                    list(
-                        map(
-                            int, face.split('/'))
+            if (len(line)== 1):
+                pass
+            else:
+                prefix, value = line.split(' ', 1)
+                if prefix =='#':
+                    pass
+
+                if prefix == 'v':
+                    self.vertices.append(
+                        list(
+                            map(float, value.split(' '))
                         )
-                        for face in value.split(' ')
-                ])
+                    )
+                if prefix == 'f':
+                    self.faces.append([
+                        list(
+                            map(
+                                int, face.split('/'))
+                            )
+                            for face in value.split(' ')
+                    ])
+
+
+            
+            
 

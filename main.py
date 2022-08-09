@@ -3,17 +3,17 @@ from Obj import *
 from Render import *
 
 
-glCreateWindow(300, 300)
+glCreateWindow(700, 700)
 
-glColor(0, 1, 1)
-
-
+glColor(0.18, 0.18, 0.18)
 
 
-scale_factor = (10, 10)
-translate_factor = (150,30)
 
-lmodel('face.obj', scale_factor, translate_factor)
+
+scale_factor = (300, 300)
+translate_factor = (350,120)
+
+lmodel('tesla.obj', scale_factor, translate_factor)
 
 
     
