@@ -97,8 +97,10 @@ def fillfigure2(puntos):
         puntox = puntosf[i][0]
         puntoy = puntosf[i][1]
         rend.line2(puntomx, puntomy, puntox,puntoy)
-          
 
+def lmodel(model,scale_factor , translate_factor):
+    global rend
+    rend.load_model(model,scale_factor,translate_factor)
 def glFinish():
     rend.write("a.bmp") 
 

@@ -1,5 +1,6 @@
 
 from Utilities import * 
+from Obj import *
 BLACK = color(0, 0, 0)
 WHITE = color(255, 255, 255)
 GREEN = color(0, 255 , 0)
@@ -142,7 +143,49 @@ class Render(object):
 
                 threshold += dx * 2     
         return listap
-        
+    
+    def transform_vertex(self,vertex,scale,translate):
+        return [
+            (vertex[0] * scale[0]) + translate[0], 
+            (vertex[1] * scale[1]) + translate[1]
+        ]
+    def load_model(self, model, scale_factor, translate_factor):
+
+        cube = Obj(model)
+
+        for face in cube.faces:
+            if len(face) == 4:
+                f1 = face[0][0] - 1
+                f2 = face[1][0] - 1
+                f3 = face[2][0] - 1
+                f4 = face[3][0] - 1
+
+                v1 = self.transform_vertex (cube.vertices[f1], scale_factor , translate_factor)
+                v2 = self.transform_vertex (cube.vertices[f2], scale_factor , translate_factor)
+                v3 = self.transform_vertex (cube.vertices[f3], scale_factor , translate_factor)
+                v4 = self.transform_vertex (cube.vertices[f4], scale_factor , translate_factor)
+
+
+
+                self.line2(v1[0], v1[1], v2[0], v2[1])
+                self.line2(v2[0], v2[1], v3[0], v3[1])
+                self.line2(v3[0], v3[1], v4[0], v4[1])
+                self.line2(v4[0], v4[1], v1[0], v1[1])
+
+            if len(face) == 3:
+                f1 = face[0][0] - 1
+                f2 = face[1][0] - 1
+                f3 = face[2][0] - 1
+
+                v1 = self.transform_vertex (cube.vertices[f1], scale_factor , translate_factor)
+                v2 = self.transform_vertex (cube.vertices[f2], scale_factor , translate_factor)
+                v3 = self.transform_vertex (cube.vertices[f3], scale_factor , translate_factor)
+
+                
+
+                self.line2(v1[0], v1[1], v2[0], v2[1])
+                self.line2(v2[0], v2[1], v3[0], v3[1])
+                self.line2(v3[0], v3[1], v1[0], v1[1])
     
 
 
