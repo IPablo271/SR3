@@ -12,6 +12,7 @@ class Obj(object):
             if (len(line)== 1):
                 pass
             else:
+
                 prefix, value = line.split(' ', 1)
                 if prefix =='#':
                     pass
@@ -23,10 +24,19 @@ class Obj(object):
                         )
                     )
                 if prefix == 'f':
-                    self.faces.append([
+                    try:
+                        self.faces.append([
                         list(
                             map(
                                 int, face.split('/'))
+                            )
+                            for face in value.split(' ')
+                    ])
+                    except:
+                        self.faces.append([
+                        list(
+                            map(
+                                int, face.split('//'))
                             )
                             for face in value.split(' ')
                     ])
